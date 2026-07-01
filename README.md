@@ -90,6 +90,33 @@ Bu depo yalnızca proje tanıtımı ve teknik dokümantasyon amacıyla paylaşı
 Fikrî mülkiyet haklarının korunması nedeniyle kaynak kodu, çalıştırılabilir dosyalar (.exe) kamuya açık olarak paylaşılmamaktadır.
 
 ---
+# 📜 SKYGUARD NON-COMMERCIAL LICENSE
+
+---
+### Telif Hakkı (c) 2026 Furkan Can Çelik
+
+Bu yazılım ve tüm ilgili içerikler (kaynak kodu, modeller, algoritmalar, mimari, tasarım ve dokümantasyon dahil) yalnızca **portföy, eğitim ve demonstrasyon amacıyla** sunulmaktadır.
+
+### 📌 İzin verilen kullanım
+- Kodun görüntülenmesi ve incelenmesi
+- Akademik ve eğitim amaçlı kullanım
+- Kişisel portföy değerlendirmesi
+
+### ❌ Yasaklanan kullanım
+Yazarın yazılı izni olmadan aşağıdaki kullanımlar yasaktır:
+- Ticari amaçla kullanım
+- Ürün, hizmet veya girişim içinde kullanılması
+- Makine öğrenmesi modeli olarak yeniden eğitilmesi veya türetilmesi
+- “SkyGuard” isminin, logosunun veya marka unsurlarının kullanılması
+- Kodun veya tasarımın yeniden dağıtılması
+
+### 🧠 Fikri Mülkiyet
+Tüm fikrî mülkiyet hakları yazara aittir.
+
+### ⚠️ Sorumluluk Reddi
+Bu yazılım “olduğu gibi” sunulmaktadır. Herhangi bir garanti verilmez.
+
+---
 
 # 🇩🇪 Deutsch
 
@@ -195,3 +222,25 @@ https://linkedin.com/in/furkancancelik7
 https://github.com/furkancan7
 
 ---
+### Urheberrecht (c) 2026 Furkan Can Çelik
+
+Diese Software sowie alle zugehörigen Inhalte (Quellcode, Modelle, Algorithmen, Architektur, Design und Dokumentation) werden ausschließlich für **Portfolio-, Bildungs- und Demonstrationszwecke** bereitgestellt.
+
+### 📌 Erlaubte Nutzung
+- Ansicht und Studium des Quellcodes
+- Akademische und pädagogische Nutzung
+- Persönliche Portfolio-Bewertung
+
+### ❌ Verbotene Nutzung
+Ohne schriftliche Genehmigung des Autors sind folgende Nutzungen untersagt:
+- Kommerzielle Nutzung
+- Verwendung in Produkten, Dienstleistungen oder Unternehmenssystemen
+- Training oder Ableitung von Machine-Learning-Modellen
+- Nutzung des Namens „SkyGuard“ oder anderer Branding-Elemente
+- Weiterverbreitung des Codes oder Designs
+
+### 🧠 Eigentum
+Alle geistigen Eigentumsrechte verbleiben beim Autor.
+
+### ⚠️ Haftungsausschluss
+Diese Software wird ohne jegliche Garantie bereitgestellt.
