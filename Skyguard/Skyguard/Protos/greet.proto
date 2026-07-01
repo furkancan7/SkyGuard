@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "Skyguard.Grpc";
+
+package Skyguard;
+
+service FlightTrackerService{
+  rpc CheckAnomaly (FlightTracker) returns (FlightReporter);
+}
+service LiveTelemetryFeed{
+	rpc TelemetryData(TelemetryRequest) returns (stream TelemetryUpdate);
+}
+
+message FlightTracker {
+  string flightno = 1;      // icao24
+  float velocity = 2;       // Hýz
+  float heading = 3;        // Yön (0-360)
+  float vertrate = 4;       // Dikey Hýz (Alçalma/Týrmanma)
+  float baroaltitude = 5;   // Barometrik Ýrtifa
+  int32 squawk = 6;         // Squawk Kodu (Örn: 7700)
+  int32 alert = 7;          // Uyarý durumu (0 veya 1)
+  int32 spi = 8;            // SPI durumu (0 veya 1)
+}
+
+message FlightReporter {
+  bool isAnomaly = 1;
+  string Status=2;
+}
+message TelemetryRequest {
+  string flightno = 1; // Ýstekte bulunulan uçuþun ICAO24 kodu
+}
+message TelemetryUpdate {
+   string flightno = 1;      // ICAO24 kodu
+   string callsign= 2;       // Uçuþun çaðrý iþareti
+   float velocity = 3;		// Hýz
+   float heading = 4;		// Yön (0-360)
+   float Baroaltitude = 5;	// Barometrik Ýrtifa
+   double latitude=6;		// Enlem
+   double longitude = 7;    // GMap üzerinde uçaðý oynatabilmek için boylam
+   float risk_score = 8;    // AI motorunun anlýk risk yüzdesi (Örn: 94.2)
+   string last_update_time = 9; // Son güncelleme zamaný (ISO 8601 formatýnda, "2024-06-01T12:34:56Z")
+}

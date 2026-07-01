@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|c:\\users\\hp\\desktop\\repos\\skyguard\\skyguardapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|solutionrelative:skyguardapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|c:\\users\\hp\\desktop\\repos\\skyguard\\skyguardapp\\services\\telemetrymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|solutionrelative:skyguardapp\\services\\telemetrymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDE0CA06-74E7-43D1-8E72-0337CE80037B}|Skyguard\\Skyguard.csproj|c:\\users\\hp\\desktop\\repos\\skyguard\\skyguard\\services\\flighttrackerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDE0CA06-74E7-43D1-8E72-0337CE80037B}|Skyguard\\Skyguard.csproj|solutionrelative:skyguard\\services\\flighttrackerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|c:\\users\\hp\\desktop\\repos\\skyguard\\skyguardapp\\radarview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|solutionrelative:skyguardapp\\radarview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|c:\\users\\hp\\desktop\\repos\\skyguard\\skyguardapp\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B8368F0-C79A-4667-BD56-530E1554D9E7}|SkyguardApp\\SkyguardApp.csproj|solutionrelative:skyguardapp\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TelemetryManager.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\Services\\TelemetryManager.cs",
+              "RelativeDocumentMoniker": "SkyguardApp\\Services\\TelemetryManager.cs",
+              "ToolTip": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\Services\\TelemetryManager.cs",
+              "RelativeToolTip": "SkyguardApp\\Services\\TelemetryManager.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAkwJ0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:45:08.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FlightTrackerService.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\Skyguard\\Services\\FlightTrackerService.cs",
+              "RelativeDocumentMoniker": "Skyguard\\Services\\FlightTrackerService.cs",
+              "ToolTip": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\Skyguard\\Services\\FlightTrackerService.cs",
+              "RelativeToolTip": "Skyguard\\Services\\FlightTrackerService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:45:08.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\App.xaml",
+              "RelativeDocumentMoniker": "SkyguardApp\\App.xaml",
+              "ToolTip": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\App.xaml",
+              "RelativeToolTip": "SkyguardApp\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-23T16:45:08.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\LoginView.xaml.cs",
+              "RelativeDocumentMoniker": "SkyguardApp\\LoginView.xaml.cs",
+              "ToolTip": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\LoginView.xaml.cs",
+              "RelativeToolTip": "SkyguardApp\\LoginView.xaml.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAkwBcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:45:08.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RadarView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\RadarView.xaml.cs",
+              "RelativeDocumentMoniker": "SkyguardApp\\RadarView.xaml.cs",
+              "ToolTip": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\SkyguardApp\\RadarView.xaml.cs",
+              "RelativeToolTip": "SkyguardApp\\RadarView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8BAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:45:08.324Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+C:\Users\hp\source\repos\Skyguard\LoginForm\bin\Debug\LoginForm.exe.config
+C:\Users\hp\source\repos\Skyguard\LoginForm\bin\Debug\LoginForm.exe
+C:\Users\hp\source\repos\Skyguard\LoginForm\bin\Debug\LoginForm.pdb
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.csproj.AssemblyReference.cache
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.Form1.resources
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.Properties.Resources.resources
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.csproj.GenerateResource.cache
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.exe
+C:\Users\hp\source\repos\Skyguard\LoginForm\obj\Debug\LoginForm.pdb

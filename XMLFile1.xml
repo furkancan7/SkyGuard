@@ -1,0 +1,35 @@
+﻿<Window
+    x:Class="osmanlicaklavye.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:osmanlicaklavye"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Osmanlıca Klavye Pro">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="12" Padding="10">
+		<StackPanel Spacing="10">
+			<TextBlock Text="OSMANLICA KLAVYE WIDGET"
+                       FontSize="10"
+                       FontWeight="Bold"
+                       Opacity="0.5"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,5"/>
+
+			<ItemsControl x:Name="KeyboardGrid">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Spacing="4"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+
+			<Grid ColumnDefinitions="*,2*,*" ColumnSpacing="5" Margin="0,5,0,0">
+				<Button Grid.Column="0" Content="⌫" Click="OnBackspaceClick" HorizontalAlignment="Stretch" FontFamily="Segoe UI Symbol"/>
+				<Button Grid.Column="1" Content="BOŞLUK" Click="OnSpaceClick" HorizontalAlignment="Stretch" Background="#D97706" Foreground="White"/>
+				<Button Grid.Column="2" Content="↵" Click="OnEnterClick" HorizontalAlignment="Stretch" FontFamily="Segoe UI Symbol"/>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</Window>

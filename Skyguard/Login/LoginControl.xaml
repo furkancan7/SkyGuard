@@ -1,0 +1,42 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="Login.LoginControl"
+             Background="#0A0A0A" av:DesignHeight="815.8" av:DesignWidth="886">
+
+    <Grid>
+        <Image Source="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDX6AjvpZmIq4IeOtxutT3dTSSS5NnVrlIt07nWPOjlSeZ_uSfM2IpdHg4BbL1NkWmwYxgt7g2NIZsfDnzxZ_KxpQvebMKN6HfdfQG4-lrhO8q-51qc8X8A2J7VezSWU-8usrJee9hqdxXPoaunR77BQwkQfL8mag8Ehgxe2LSsVXgH7pKfielurn1aBaKIYRXAH3K0XyBhbt1SIR4Cf_MasT2L0DsuZm4m8I0_WAB6RmzRLR2If20LhaSESVuITkWHZL089Fy07S" Stretch="UniformToFill" Opacity="0.4" Margin="-81,-50,-537,-125"/>
+
+        <Border Width="526" VerticalAlignment="Top" HorizontalAlignment="Left"
+                Background="#1B222B" CornerRadius="8" Padding="40,50,40,40" BorderBrush="#252D37" BorderThickness="1" Margin="408,210,0,0" Height="610">
+            <StackPanel>
+                <Border Background="White" Width="178" Height="145" CornerRadius="4" Margin="0,0,0,40">
+                    <Image Source="C:\Users\hp\Downloads\logo.png" Stretch="Uniform" Margin="10"/>
+                </Border>
+
+                <TextBlock Text="E-posta veya Kullanıcı Adı" Foreground="#D1D5DB" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8" FontFamily="Segoe UI"/>
+                <Border Background="#161B21" BorderBrush="#30363D" BorderThickness="1" CornerRadius="4" Margin="0,0,0,20" Height="45">
+                    <TextBox x:Name="txtUser" Background="Transparent" BorderThickness="0" Foreground="White" Padding="15,0" VerticalContentAlignment="Center" FontSize="14" CaretBrush="#E32024"/>
+                </Border>
+
+                <TextBlock Text="Şifre" Foreground="#D1D5DB" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8" FontFamily="Segoe UI"/>
+                <Border Background="#161B21" BorderBrush="#30363D" BorderThickness="1" CornerRadius="4" Margin="0,0,0,10" Height="45">
+                    <PasswordBox x:Name="txtPass" Background="Transparent" BorderThickness="0" Foreground="White" Padding="15,0" VerticalContentAlignment="Center" FontSize="14" CaretBrush="#E32024"/>
+                </Border>
+
+                <Button x:Name="btnGiris" Click="btnGiris_Click" Height="50" Background="#E32024" BorderThickness="0" Cursor="Hand" Margin="0,20,0,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <TextBlock Text="Giriş Yap" Foreground="White" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI"/>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="© 2026 Sky Guard Security Operations — System v4.2.0" Foreground="#4B5563" FontSize="11" FontFamily="Segoe UI" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,40"/>
+    </Grid>
+</UserControl>

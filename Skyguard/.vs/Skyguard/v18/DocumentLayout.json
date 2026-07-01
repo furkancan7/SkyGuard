@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DDE0CA06-74E7-43D1-8E72-0337CE80037B}|Skyguard\\Skyguard.csproj|c:\\users\\hp\\desktop\\repos\\skyguard\\skyguard\\protos\\greet.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{DDE0CA06-74E7-43D1-8E72-0337CE80037B}|Skyguard\\Skyguard.csproj|solutionrelative:skyguard\\protos\\greet.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "greet.proto",
+              "DocumentMoniker": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\Skyguard\\Protos\\greet.proto",
+              "RelativeDocumentMoniker": "Skyguard\\Protos\\greet.proto",
+              "ToolTip": "C:\\Users\\hp\\Desktop\\repos\\Skyguard\\Skyguard\\Protos\\greet.proto",
+              "RelativeToolTip": "Skyguard\\Protos\\greet.proto",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACgAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2026-07-01T12:17:21.854Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Yeni Profil",
+    "Projects": [
+      {
+        "Path": "Skyguard\\Skyguard.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "SkyguardApp\\SkyguardApp.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

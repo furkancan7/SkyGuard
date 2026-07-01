@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="SkyguardApp.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        
+        <Viewbox Stretch="UniformToFill" 
+         VerticalAlignment="Center" 
+         HorizontalAlignment="Center">
+
+            <Canvas Name="svg47" Width="1000" Height="1000">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources>
+                    <LinearGradientBrush x:Key="sweepGradient" MappingMode="RelativeToBoundingBox" StartPoint="0,1" EndPoint="1,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#0000B5E2" Offset="0"/>
+                                <GradientStop Color="#4D00B5E2" Offset="1"/>
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Canvas.Resources>
+
+                <Rectangle Width="1000" Height="1000" Name="rect2" Fill="#FF081530"/>
+
+                <Canvas Name="g20" Opacity="0.3">
+                    <Line X1="500" Y1="50" X2="500" Y2="950" Name="line4" StrokeThickness="2" Stroke="#FF00B5E2"/>
+                    <Line X1="50" Y1="500" X2="950" Y2="500" Name="line6" StrokeThickness="2" Stroke="#FF00B5E2"/>
+                    <Line X1="181" Y1="181" X2="819" Y2="819" Name="line8" StrokeThickness="1" Stroke="#FF00B5E2" StrokeDashArray="10, 10"/>
+                    <Line X1="181" Y1="819" X2="819" Y2="181" Name="line10" StrokeThickness="1" Stroke="#FF00B5E2" StrokeDashArray="10, 10"/>
+                    <Ellipse Canvas.Left="400" Canvas.Top="400" Width="200" Height="200" Name="circle12" StrokeThickness="1.5" Stroke="#FF00B5E2"/>
+                    <Ellipse Canvas.Left="300" Canvas.Top="300" Width="400" Height="400" Name="circle14" StrokeThickness="1.5" Stroke="#FF00B5E2"/>
+                    <Ellipse Canvas.Left="200" Canvas.Top="200" Width="600" Height="600" Name="circle16" StrokeThickness="1.5" Stroke="#FF00B5E2"/>
+                    <Ellipse Canvas.Left="100" Canvas.Top="100" Width="800" Height="800" Name="circle18" StrokeThickness="2" Stroke="#FF00B5E2" StrokeDashArray="4, 12" />
+                </Canvas>
+
+                <Path Name="path29" Fill="{StaticResource sweepGradient}">
+                    <Path.Data>
+                        <PathGeometry Figures="M 500 500 L 500 100 A 400 400 0 0 1 782.8 217.2 Z" FillRule="NonZero"/>
+                    </Path.Data>
+                </Path>
+
+                <Canvas Name="g37" Opacity="0.6">
+                    <Ellipse Canvas.Left="845" Canvas.Top="350" Width="10" Height="10" Name="circle31" Fill="#FF00B5E2"/>
+
+                    <Ellipse Canvas.Left="838" Canvas.Top="343" Width="24" Height="24" Name="circle33" StrokeThickness="1" Stroke="#FF00B5E2"/>
+
+                    <TextBlock FontSize="14" 
+               FontFamily="monospace" 
+               Foreground="#FF00B5E2" 
+               Canvas.Left="870" 
+               Canvas.Top="346" 
+               Name="text35">FLT401 - NRM</TextBlock>
+                </Canvas>
+
+                <Canvas Name="g45" Opacity="0.9">
+                    <Ellipse Canvas.Left="235" Canvas.Top="710" Width="12" Height="12" Name="circle39" Fill="#FFE30A17"/>
+
+                    <Ellipse Canvas.Left="223" Canvas.Top="698" Width="36" Height="36" Name="circle41" StrokeThickness="1.5" Stroke="#FFE30A17" StrokeDashArray="4, 4"/>
+
+                    <TextBlock FontSize="14" 
+               FontWeight="Bold" 
+               FontFamily="monospace" 
+               Foreground="#FFE30A17" 
+               Canvas.Left="265" 
+               Canvas.Top="707" 
+               Name="text43">LFW413 - ANMLY</TextBlock>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+
+        <Border Width="400" VerticalAlignment="Center" Background="#081530" CornerRadius="12" Padding="40" BorderBrush="#30363D" BorderThickness="1">
+            <StackPanel>
+
+                <ContentControl Template="{StaticResource RadarBackgroundTemplate}"
+                Width="163"
+                Height="100"
+                Margin="0,0,0,30"
+                HorizontalAlignment="Center"/>
+
+                <TextBlock Text="{DynamicResource lblUserId}" Foreground="#F0F4F8" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtUser" Height="40" Background="#192038" Foreground="White" BorderBrush="#30363D" VerticalContentAlignment="Center" Padding="10,0" Margin="0,0,0,20"/>
+
+                <TextBlock Text="{DynamicResource lblPassword}" Foreground="#F0F4F8" Margin="0,0,0,5"/>
+                <PasswordBox x:Name="txtPass" Height="40" Background="#192038" Foreground="White" BorderBrush="#30363D" VerticalContentAlignment="Center" Padding="10,0" Margin="0,0,0,30"/>
+
+                <Button Content="{DynamicResource btnStartSystem}" Click="btn_Login_Click" IsDefault="True" Height="50" Background="#E30A17" Foreground="#F0F4F8" FontWeight="Bold" Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="{DynamicResource lblCopyright}" 
+                   Foreground="#F0F4F8" 
+                   FontSize="11" 
+                   FontFamily="Segoe UI" 
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <ComboBox x:Name="cmbLang" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" 
+                  Width="60" Height="23" 
+                  Margin="20,20,0,0"
+                  Background="#192038" 
+                  Foreground="#192038"
+                  BorderBrush="#30363D"
+                  SelectionChanged="cmbLang_SelectionChanged">
+            <ComboBox.Resources>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="#192038"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="gd" 
+                                        Background="{TemplateBinding Background}" 
+                                        Padding="5">
+                                    <ContentPresenter />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="gd" Property="Background" Value="#2D3653"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="FontStyle" Value="Italic"/>
+                                        <Setter TargetName="gd" Property="Background" Value="#192038"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ComboBox.Resources>
+
+            <ComboBoxItem Content="TR" Tag="TR" IsSelected="True"/>
+            <ComboBoxItem Content="EN" Tag="EN"/>
+            <ComboBoxItem Content="DE" Tag="DE"/>
+        </ComboBox>
+
+        <Button x:Name="btnClose"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Width="40" Height="40" 
+                Margin="0,10,10,0"
+                Background="Transparent" 
+                BorderBrush="Transparent"
+                Cursor="Hand"
+                Click="btnClose_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="btnBorder" Background="{TemplateBinding Background}" CornerRadius="20">
+                        <Viewbox Width="20" Height="20">
+                            <Path Fill="#F0F4F8" Stretch="Uniform"
+                                  Data="m 8 0 c -0.550781 0 -1 0.449219 -1 1 v 5 c 0 0.550781 0.449219 1 1 1 s 1 -0.449219 1 -1 v -5 c 0 -0.550781 -0.449219 -1 -1 -1 z m -3.136719 1.816406 c -0.128906 0.015625 -0.253906 0.058594 -0.367187 0.125 c -2.734375 1.582032 -4.074219 4.816406 -3.257813 7.871094 c 0.820313 3.050781 3.59375 5.183594 6.75 5.1875 c 3.160157 0.003906 5.941407 -2.121094 6.765625 -5.167969 c 0.828125 -3.050781 -0.5 -6.289062 -3.230468 -7.878906 c -0.476563 -0.28125 -1.089844 -0.121094 -1.367188 0.359375 c -0.132812 0.226562 -0.171875 0.5 -0.105469 0.757812 c 0.070313 0.257813 0.234375 0.476563 0.464844 0.609376 c 1.957031 1.140624 2.902344 3.441406 2.3125 5.628906 c -0.59375 2.183594 -2.570313 3.695312 -4.832031 3.691406 c -2.265625 -0.003906 -4.238282 -1.519531 -4.824219 -3.707031 s 0.363281 -4.488281 2.324219 -5.621094 c 0.476562 -0.277344 0.640625 -0.886719 0.363281 -1.363281 c -0.132813 -0.230469 -0.347656 -0.398438 -0.605469 -0.464844 c -0.125 -0.035156 -0.257812 -0.042969 -0.390625 -0.027344 z m 0 0" />
+                        </Viewbox>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E30A17"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>

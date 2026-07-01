@@ -1,0 +1,2 @@
+obj\Debug\net9.0-windows/Greet.cs \
+obj\Debug\net9.0-windows/GreetGrpc.cs: ../Skyguard/Protos/greet.proto

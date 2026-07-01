@@ -1,0 +1,17 @@
+﻿<Window x:Class="SkyguardApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sky Guard Command Center" Height="850" Width="1200"
+        WindowStartupLocation="CenterScreen" Background="#0A0A0A"
+        WindowState="Maximized" WindowStyle="ThreeDBorderWindow"
+        Icon="pack://application:,,,/Images/Icon.ico"
+        BorderBrush="Black">
+    
+
+
+    <Grid>
+        <ContentControl x:Name="ViewDisplay" 
+                        HorizontalContentAlignment="Stretch" 
+                        VerticalContentAlignment="Stretch" />
+    </Grid>
+</Window>

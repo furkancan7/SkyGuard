@@ -1,0 +1,672 @@
+﻿<UserControl x:Class="SkyguardApp.RadarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:gmap="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1400"
+             Focusable="True"
+             KeyDown="Key_Down">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TacticalRed" Color="#E32024"/>
+        <SolidColorBrush x:Key="TacticalNeon" Color="#DEFF9A"/>
+        <SolidColorBrush x:Key="TacticalBlue" Color="#6BE0FF"/>
+        <SolidColorBrush x:Key="TacticalOrange" Color="#F59E0B"/>
+        <SolidColorBrush x:Key="TacticalMuted" Color="#4B5563"/>
+
+        <Style x:Key="SecureExitButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1A1F2937"/>
+            <Setter Property="BorderBrush" Value="#E32024"/>
+            <Setter Property="Foreground" Value="#E32024"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" Padding="12,6" x:Name="border">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="11" Margin="0,0,6,0"/>
+                                <TextBlock Text="SECURE EXIT" FontSize="10" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E32024"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#991B1B"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModuleSelectorStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#9CA3AF"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="25,0"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="GroupName" Value="MainModules"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" x:Name="btnBorder" BorderBrush="Transparent" BorderThickness="0">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1F2937"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                <Setter TargetName="btnBorder" Property="BorderBrush" Value="#E32024"/>
+                                <Setter TargetName="btnBorder" Property="BorderThickness" Value="0,0,0,3"/>
+                                <Setter Property="Background" Value="#111827"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CompactMenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#9CA3AF"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="32,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#DEFF9A"/>
+                                <Setter Property="Background" Value="#111827"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TacticalExpanderStyle" TargetType="Expander">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#1F2937"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid Height="38">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=Expander}, Path=Tag}" 
+                                       FontFamily="Segoe MDL2 Assets" Foreground="#6B7280" FontSize="12"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" FontSize="12" Margin="5,0,0,0" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MapOverlayButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Background" Value="#B2090D14"/>
+            <Setter Property="BorderBrush" Value="#4B5563"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#9CA3AF"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#DEFF9A"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#111827"/>
+                                <Setter Property="BorderBrush" Value="#DEFF9A"/>
+                                <Setter Property="Foreground" Value="#DEFF9A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#05070F">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#F2090D14" BorderBrush="#1F2937" BorderThickness="0,0,0,1" Panel.ZIndex="10">
+            <Grid Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Text="SKY" Foreground="#FFFFFF" FontSize="18" FontWeight="Black" VerticalAlignment="Center"/>
+                    <TextBlock Text="GUARD" Foreground="#E32024" FontSize="18" FontWeight="Light" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                    <Rectangle Width="1" Height="20" Fill="#374151" Margin="15,0"/>
+                    <TextBlock Text="SKY GUARD C2 NETWORK V1.0" Foreground="#4B5563" FontSize="9" VerticalAlignment="Center" FontFamily="Consolas"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="40,0,0,0">
+                    <RadioButton x:Name="ModRadar" Style="{StaticResource ModuleSelectorStyle}" Content="RADAR" IsChecked="True"/>
+                    <RadioButton x:Name="ModTrack" Style="{StaticResource ModuleSelectorStyle}" Content="TRACK"/>
+                    <RadioButton x:Name="ModAlert" Style="{StaticResource ModuleSelectorStyle}" Content="ALERT"/>
+                    <RadioButton x:Name="ModThreat" Style="{StaticResource ModuleSelectorStyle}" Content="THREAT"/>
+
+                    <RadioButton x:Name="ModIntel" Style="{StaticResource ModuleSelectorStyle}" Content="INTEL" IsChecked="True" GroupName="IntelPanelGroup"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <UniformGrid Columns="2" Rows="2" VerticalAlignment="Center" Margin="0,0,15,0">
+                        <StackPanel Orientation="Horizontal" Margin="5,1">
+                            <Ellipse Width="5" Height="5" Fill="#DEFF9A" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBlock Text="SYS: ACTIVE" Foreground="#DEFF9A" FontSize="9" FontWeight="Bold"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtTrackCount" Text="TRACKS: 0" Foreground="#9CA3AF" FontSize="9" FontWeight="Bold" FontFamily="Consolas" Margin="5,1"/>
+                        <TextBlock x:Name="TxtAlertCount" Text="ALERTS: 0" Foreground="#F59E0B" FontSize="9" FontWeight="Bold" FontFamily="Consolas" Margin="5,1"/>
+                        <StackPanel Orientation="Horizontal" Margin="5,1">
+                            <TextBlock x:Name="TxtThreatCount" Text="THREATS: 0" Foreground="#E32024" FontSize="9" FontWeight="Bold" FontFamily="Consolas"/>
+                            <TextBlock x:Name="TxtLatency" Text=" | 0ms" Foreground="#4B5563" FontSize="9" FontFamily="Consolas"/>
+                        </StackPanel>
+                    </UniformGrid>
+
+                    <Rectangle Width="1" Height="20" Fill="#374151" Margin="0,0,15,0"/>
+
+                    <Button x:Name="OutButton" Style="{StaticResource SecureExitButtonStyle}" Click="btn_Logout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="0">
+                <gmap:GMapControl x:Name="MainMap" Loaded="MainMap_Loaded" KeyDown="Key_Down"/>
+
+                <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0"
+                        Background="#D9090D14" BorderBrush="#26DEFF9A" BorderThickness="1" CornerRadius="4" Padding="6,4">
+                    <StackPanel Orientation="Horizontal">
+                        <ToggleButton Style="{StaticResource MapOverlayButtonStyle}" Content="LAYERS" IsChecked="True"/>
+                        <ToggleButton Style="{StaticResource MapOverlayButtonStyle}" Content="GRID"/>
+                        <ToggleButton Style="{StaticResource MapOverlayButtonStyle}" Content="SWEEP" IsChecked="True"/>
+                        <ToggleButton Style="{StaticResource MapOverlayButtonStyle}" Content="WEATHER"/>
+                        <ToggleButton Style="{StaticResource MapOverlayButtonStyle}" Content="HEATMAP"/>
+                        <ToggleButton Style="{StaticResource MapOverlayButtonStyle}" Content="THREATS"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Grid.Column="0" Grid.Row="0" x:Name="SidebarContainer" Width="240"
+                    Background="#FA080C14" BorderBrush="#1F2937" BorderThickness="0,0,1,0" Panel.ZIndex="5">
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <TranslateTransform X="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BtnToggleLeftMenu, Path=IsChecked}" Value="False">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform X="-205"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ToggleButton Grid.Row="0" x:Name="BtnToggleLeftMenu" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" Width="35" Cursor="Hand" IsChecked="False" Panel.ZIndex="20">
+                        <ToggleButton.Template>
+                            <ControlTemplate TargetType="ToggleButton">
+                                <Border Background="{TemplateBinding Background}">
+                                    <TextBlock x:Name="icon" Text="" FontFamily="Segoe MDL2 Assets" Foreground="#6B7280" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="icon" Property="Foreground" Value="#FFFFFF"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter TargetName="icon" Property="Foreground" Value="{StaticResource TacticalBlue}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </ToggleButton.Template>
+                    </ToggleButton>
+
+                    <Grid Grid.Row="1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ModRadar, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ScrollViewer.Style>
+                            <StackPanel>
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Telemetry" Tag="">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" x:Name="BtnLiveTelemetry" Content="• Live Feed" Click="BtnLiveTelemetry_Click"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Airspace" Tag="" IsExpanded="True">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Layers"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Restricted Zones"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Flight Corridors"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• ADS-B Coverage"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Tactical" Tag="" IsExpanded="True">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Grid"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Sweep"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Environment" Tag="">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Terrain"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Geo Zones"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Threat Systems" Tag="">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Risk Scoring"/>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ModTrack, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ScrollViewer.Style>
+                            <StackPanel>
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Target Filtering" Tag="" IsExpanded="True">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Friendly Tracks"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Hostile Tracks"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Unknown Objects"/>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Trajectory Data" Tag="">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Predict Path"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Historical Tracks"/>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ModAlert, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ScrollViewer.Style>
+                            <StackPanel>
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Active Alerts" Tag="" IsExpanded="True">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Critical Warnings"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Boundary Breaches"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• System Logs"/>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ModThreat, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ScrollViewer.Style>
+                            <StackPanel>
+                                <Expander Style="{StaticResource TacticalExpanderStyle}" Header="Threat Assessment" Tag="" IsExpanded="True">
+                                    <StackPanel Background="#0B0F19">
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Target Locking"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Weapon Systems"/>
+                                        <Button Style="{StaticResource CompactMenuButtonStyle}" Content="• Risk Scoring"/>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <Grid Grid.Row="1" HorizontalAlignment="Right" Width="35" Panel.ZIndex="10">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=BtnToggleLeftMenu, Path=IsChecked}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+
+                        <Border Width="2" HorizontalAlignment="Right" Background="{StaticResource TacticalBlue}"/>
+                        <Border Background="#111827" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0,15">
+                            <TextBlock Text="C2 MENU" Foreground="{StaticResource TacticalBlue}" FontSize="10" FontWeight="Bold" FontFamily="Consolas">
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="-90"/>
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="300" x:Name="IntelDrawer"
+                    Background="#FA080C14" BorderBrush="#1F2937" BorderThickness="1,0,0,0" Panel.ZIndex="6">
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <TranslateTransform X="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ModIntel, Path=IsChecked}" Value="False">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform X="280"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="#111827" BorderBrush="#1F2937" BorderThickness="0,0,0,1" Padding="12,0">
+                            <Grid>
+                                <TextBlock Text="📡 CONTEXT TARGET INFO" VerticalAlignment="Center" Foreground="#E32024" FontSize="11" FontWeight="Bold"/>
+
+                                <Button HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Cursor="Hand" x:Name="BtnCloseIntel">
+                                    <TextBlock Text="" FontFamily="Segoe MDL2 Assets" Foreground="#6B7280" FontSize="10"/>
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ModIntel" Storyboard.TargetProperty="IsChecked">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </Grid>
+                        </Border>
+
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="14">
+                            <StackPanel>
+                                <Border Background="#26E32024" BorderBrush="#E32024" BorderThickness="1" CornerRadius="4" Padding="12" Margin="0,0,0,15">
+                                    <StackPanel>
+                                        <TextBlock Text="TARGET ANOMALY FLAGGED" Foreground="#FFFFFF" FontWeight="Bold" FontSize="11"/>
+                                        <TextBlock Text="Unsupervised ML engine tracking critical trajectory variance." Foreground="#FCA5A5" FontSize="10" Margin="0,3,0,0" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <TextBlock Text="TACTICAL TELEMETRY STREAM" Foreground="#6B7280" FontSize="10" FontWeight="Bold" Margin="0,5,0,10"/>
+
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="ICAO24 Transponder:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock x:Name="txtIcao24" Text="{Binding SelectedTarget.Icao24, FallbackValue='N/A'}" Foreground="#FFFFFF" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas" FontWeight="Bold"/>
+                                </Grid>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="Callsign Identifier:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock x:Name="txtCallsign" Text="{Binding SelectedTarget.Callsign, FallbackValue='N/A'}" Foreground="#FFFFFF" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas" FontWeight="Bold"/>
+                                </Grid>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="Barometric Altitude:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock x:Name="txtAltitude" Text="{Binding SelectedTarget.AltitudeString, FallbackValue='N/A'}" Foreground="#6BE0FF" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas"/>
+                                </Grid>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="Ground Speed Vector:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock x:Name="txtSpeed" Text="{Binding SelectedTarget.SpeedString, FallbackValue='N/A'}" Foreground="#6BE0FF" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas"/>
+                                </Grid>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="True Heading Track:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock x:Name="txtHeading" Text="{Binding SelectedTarget.HeadingString, FallbackValue='N/A'}" Foreground="#FFFFFF" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas"/>
+                                </Grid>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="Last Data Ingest:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock x:Name="txtLastUpdate" Text="{Binding SelectedTarget.LastUpdateString, FallbackValue='N/A'}" Foreground="#DEFF9A" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas"/>
+                                </Grid>
+
+                                <Separator Background="#1F2937" Margin="0,15"/>
+
+                                <TextBlock Text="INTELLIGENCE EVALUATION" Foreground="#6B7280" FontSize="10" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="Risk Model Scoring:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock Text="{Binding SelectedTarget.RiskScoreString, FallbackValue='0.0% (LOW)'}" Foreground="#E32024" FontSize="11" HorizontalAlignment="Right" FontWeight="Bold"/>
+                                </Grid>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="ML Engine Precision:" Foreground="#9CA3AF" FontSize="11"/>
+                                    <TextBlock Text="0.92 AUC-ROC" Foreground="#DEFF9A" FontSize="11" HorizontalAlignment="Right" FontFamily="Consolas"/>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <Border HorizontalAlignment="Left" Width="20" Background="#FA080C14" x:Name="VerticalHandle">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ModIntel, Path=IsChecked}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Grid Cursor="Hand">
+                            <Button Background="Transparent" BorderThickness="0" Opacity="0" Panel.ZIndex="10">
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ModIntel" Storyboard.TargetProperty="IsChecked">
+                                                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Border Width="2" Margin="0" Background="{StaticResource TacticalBlue}" HorizontalAlignment="Center"/>
+
+                            <Border Background="#111827" VerticalAlignment="Center" Padding="0,15">
+                                <TextBlock Text="INTEL PANEL" Foreground="{StaticResource TacticalBlue}" FontSize="10" FontWeight="Bold" FontFamily="Consolas">
+                                    <TextBlock.LayoutTransform>
+                                        <RotateTransform Angle="-90"/>
+                                    </TextBlock.LayoutTransform>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="40" x:Name="LogStreamPanel"
+                    Background="#FA05070F" BorderBrush="#1F2937" BorderThickness="0,1,0,0" Panel.ZIndex="5">
+                <Grid Margin="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="38"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                            <CheckBox Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="0,0,8,0" x:Name="BtnToggleLog">
+                                <CheckBox.Template>
+                                    <ControlTemplate TargetType="CheckBox">
+                                        <TextBlock x:Name="ArrowIcon" Text="" FontFamily="Segoe MDL2 Assets" Foreground="#DEFF9A" FontSize="10" VerticalAlignment="Center"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="ArrowIcon" Property="Text" Value=""/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </CheckBox.Template>
+
+                                <CheckBox.Triggers>
+                                    <EventTrigger RoutedEvent="CheckBox.Checked">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="LogStreamPanel" 
+                                                                 Storyboard.TargetProperty="Height" 
+                                                                 To="180" Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="CheckBox.Unchecked">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="LogStreamPanel" 
+                                                                 Storyboard.TargetProperty="Height" 
+                                                                 To="40" Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseIn"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </CheckBox.Triggers>
+                            </CheckBox>
+
+                            <TextBlock Text="🕒 OPERATIONAL LOG STREAM" Foreground="#9CA3AF" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <Rectangle Width="1" Height="12" Fill="#374151" Margin="12,0"/>
+                            <TextBlock Text="HUD TOPOLOGY: ENGAGED" Foreground="#DEFF9A" FontSize="10" FontFamily="Consolas" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="SECURE COMMAND HUB // ANKARA" Foreground="#4B5563" FontSize="10" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ListBox Grid.Row="1" 
+                             x:Name="LiveLogList"
+                             Background="Transparent"
+                             BorderThickness="0" Margin="0,5,0,10"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.CanContentScroll="True"
+                             VirtualizingStackPanel.IsVirtualizing="True"
+                             VirtualizingStackPanel.VirtualizationMode="Recycling">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Message}" 
+                                           Foreground="{Binding Color}" 
+                                           FontSize="11" 
+                                           FontFamily="Consolas" 
+                                           Margin="0,1" 
+                                           TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
