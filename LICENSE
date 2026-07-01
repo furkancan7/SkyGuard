@@ -1,15 +1,29 @@
 Copyright (c) 2026 Furkan Can Çelik
 
-This software and all related materials (including source code, models, design, architecture, and documentation) are provided strictly for viewing and academic reference purposes only.
+SKYGUARD NON-COMMERCIAL LICENSE
 
-The following uses are strictly prohibited:
+This software, including all source code, models, algorithms, architecture, design, and documentation (collectively "the Project"), is provided for portfolio, educational, and demonstration purposes only.
 
-- Commercial use
-- Use in any product or service
-- Integration into startup or company projects
-- Training or derivation of models based on this project
-- Copying or reuse of design, name, or branding elements
+1. PERMITTED USE
+- Viewing and studying the code for educational purposes
+- Academic research and non-commercial evaluation
+- Personal portfolio review
 
-This project is shared for portfolio and demonstration purposes only.
+2. STRICTLY PROHIBITED USE
+Without explicit written permission from the author, it is strictly forbidden to:
+- Use the Project or any part of it for commercial purposes
+- Integrate the Project into any product, service, startup, or business system
+- Train, fine-tune, or derive machine learning models based on this Project
+- Copy, reproduce, or reuse the Project name "SkyGuard" for any commercial or public product
+- Redistribute modified or unmodified versions of this Project for commercial gain
 
-No redistribution or creation of derivative works is allowed without explicit written permission from the author.
+3. OWNERSHIP
+All intellectual property rights remain exclusively with the author.
+
+4. LIABILITY
+This software is provided "as is", without warranty of any kind. The author is not liable for any damages or misuse.
+
+5. TERMINATION
+Any violation of this license automatically terminates all granted permissions.
+
+Written permission is required for any use outside the scope defined above.
